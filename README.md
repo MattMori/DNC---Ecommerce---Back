@@ -2,7 +2,6 @@
 Projeto para o Back-End de um E-commerce feito para o desafio 6 da formação em tecnologia da escola DNC.
 
 ### Hospedagem da documentação com swagger: 
-### Hospedagem do frontEnd-Vercel:
 ----------------------------------------------------------------------------------------------------------
 ## Imagens do projeto:
 
