@@ -72,7 +72,7 @@ router.post('/vender/:idPedido', conectarBancoDados, async function (req, res) {
 
     res.status(201).json({
       status: "OK",
-      statusMensagem: "Venda criada com sucesso.",
+      statusMensagem: "Venda realizada com sucesso.",
       resposta: novaVenda
     });
   } catch (error) {

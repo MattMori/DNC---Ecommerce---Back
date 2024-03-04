@@ -58,7 +58,6 @@ router.put('/atualizarEstoque/:idProduto', conectarBancoDados, async (req, res) 
 });
 
 // Rota para listar todos os itens do estoque
-
 router.get('/', conectarBancoDados, async (req, res) => {
   // #swagger.tags = ['Estoque']
   try {
@@ -70,21 +69,33 @@ router.get('/', conectarBancoDados, async (req, res) => {
 });
 
 // Rota para buscar um item específico no estoque por ID
-router.get('/:id', conectarBancoDados, async (req, res) => {
+router.get('/obter/:idProduto', conectarBancoDados, async function (req, res) {
   // #swagger.tags = ['Estoque']
-
   try {
-    const idItem = req.params.id;
-    const itemEstoque = await EsquemaEstoque.findById(idItem);
-    if (!itemEstoque) {
-      return res.status(404).json({ status: 'Erro', mensagem: 'Item do estoque não encontrado' });
+    const idProduto = req.params.idProduto;
+    const itemEstoque = await EsquemaEstoque.findOne({ idProduto });
+
+    if (itemEstoque) {
+      return res.status(200).json({
+        status: 'OK',
+        mensagem: 'Item encontrado no estoque',
+        resposta: itemEstoque
+      });
     }
-    res.json(itemEstoque);
+    
+    return res.status(404).json({
+      status: 'Erro',
+      mensagem: 'Item do estoque não encontrado'
+    });
   } catch (error) {
     console.error('Erro ao buscar item no estoque:', error);
-    return res.status(500).json({ status: 'Erro', mensagem: 'Erro ao buscar item no estoque' });
+    return res.status(500).json({
+      status: 'Erro',
+      mensagem: 'Erro ao buscar item no estoque'
+    });
   }
 });
+
 
 // Rota para remover produtos do estoque
 router.delete('/:idProduto/remover', conectarBancoDados, async (req, res) => {
@@ -93,7 +104,8 @@ router.delete('/:idProduto/remover', conectarBancoDados, async (req, res) => {
   try {
     const idProduto = req.params.idProduto;
     await EsquemaEstoque.deleteOne({ idProduto });
-    res.status(200).json({ status: 'OK', mensagem: 'Produto removido do estoque com sucesso' });
+    await EsquemaProduto.deleteOne({ _id: idProduto });
+    res.status(200).json({ status: 'OK', mensagem: 'Produto removido do sistema com sucesso' });
   } catch (error) {
     console.error('Erro ao remover produto do estoque:', error);
     return res.status(500).json({ status: 'Erro', mensagem: 'Erro ao remover produto do estoque' });

@@ -21,26 +21,6 @@
     }
   });
 
-  router.put('/editar/:id', conectarBancoDados, async function (req, res) {
-    try {
-      // #swagger.tags = ['Produto']
-      const { nome, descricao, preco} = req.body;
-      const idProduto = req.params.id;
-      const produtoAtualizado = await EsquemaProduto.updateOne({ _id: idProduto }, { nome, descricao, preco, modifiedAt: new Date()});
-      if (produtoAtualizado?.modifiedCount > 0) {
-        const dadosProduto = await EsquemaProduto.findOne({ _id: idProduto });
-
-        res.status(200).json({
-          status: "OK",
-          statusMensagem: "Produto atualizado com sucesso.",
-          resposta: dadosProduto
-        })
-      }
-    } catch (error) {
-      return tratarErrosEsperados(res, error);
-    }
-  });
-
   router.get('/obter/Produtos', conectarBancoDados, async function (req, res) {
     try {
       // #swagger.tags = ['Produto']
@@ -82,26 +62,6 @@
     }
   });
 
-  router.delete('/deletar/:id', conectarBancoDados, async function (req, res) {
-    try {
-      // #swagger.tags = ['Produto']
-      const idProduto = req.params.id;
 
-      const checkProduto = await EsquemaProduto.findOne({ _id: idProduto });
-      if (!checkProduto) {
-        throw new Error("Produto não encontrado");
-      }
-
-      const respostaBD = await EsquemaProduto.deleteOne({ _id: idProduto });
-      res.status(200).json({
-        status: "OK",
-        statusMensagem: "Produto foi deletado com sucesso.",
-        resposta: respostaBD
-      })
-
-    } catch (error) {
-      return tratarErrosEsperados(res, error);
-    }
-  });
 
   module.exports = router;
