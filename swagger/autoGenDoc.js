@@ -27,13 +27,13 @@ let doc = {
     },
     servers: [
         {
-            url: "http://localhost:3500/",
-            description: "Servidor localhost."
-        },
-        {
-            url: "https://dnc-ecommerce-back.vercel.app/",
-            description: "Servidor de produção."
-        }
+            "url": "https://dnc-ecommerce-back.vercel.app/",
+            "description": "Servidor de produção."
+          },
+          {
+            "url": "http://localhost:3500/",
+            "description": "Servidor localhost."
+          }
     ],
     consumes: ['application/json'],
     produces: ['application/json'],
