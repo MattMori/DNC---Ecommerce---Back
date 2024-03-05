@@ -2,7 +2,9 @@
 Projeto para o Back-End de um E-commerce feito para o desafio 6 da formação em tecnologia da escola DNC.
 
 ### Hospedagem da documentação com swagger: https://dnc-ecommerce-back.vercel.app/doc/
-senha para testes: 123
+#### senha para testes: 123
+
+Realizei os testes e coloquei os resultados em imagens abaixo.
 ----------------------------------------------------------------------------------------------------------
 ## Imagens do projeto:
 
