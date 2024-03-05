@@ -15,7 +15,7 @@ Projeto para o Back-End de um E-commerce feito para o desafio 6 da formação em
 <details>
 <summary>SwaggerUI - Imagem</summary>
   
-![SwaggerUI - Imagem](/public/SwaggerUI.png)
+![SwaggerUI - Imagem](/public/api.png)
 
 </details>
 
