@@ -1,90 +1,78 @@
-# DNC - E-Commerce-Back
-Projeto para o Back-End de um E-commerce feito para o desafio 6 da formação em tecnologia da escola DNC.
+# DNC E-Commerce - Back-End
 
-### Hospedagem da documentação com swagger: https://dnc-ecommerce-back.vercel.app/doc/
-#### senha para testes: 123
-#### Realizei os testes no Insomnia tambem e coloquei os resultados em imagens abaixo.
-----------------------------------------------------------------------------------------------------------
-## Imagens do projeto:
+Este é o back-end para um sistema de e-commerce desenvolvido como parte do desafio 6 da formação em tecnologia da escola DNC. A API foi criada com Node.js e Express, e está integrada com um banco de dados MongoDB para o armazenamento de informações relacionadas a clientes, produtos, pedidos, vendas e estoque.
 
-<details>
-<summary>Modelagem do sistema</summary>
-  
-![Diagrama de venda](/public/DiagramaDeVenda.png)
+## Tecnologias Utilizadas
 
-</details>
+- **Node.js** – Ambiente de execução.
+- **Express.js** – Framework para construção da API.
+- **MongoDB** – Banco de dados NoSQL.
+- **Mongoose** – Modelagem de dados para MongoDB.
+- **Swagger** – Documentação da API.
+- **dotenv** – Gerenciamento de variáveis de ambiente.
+- **cors** – Permite requisições cross-origin.
+- **nodemon** – Ferramenta para reiniciar automaticamente o servidor durante o desenvolvimento.
 
-<details>
-<summary>SwaggerUI - Imagem</summary>
-  
-![SwaggerUI - Imagem](/public/api.png)
+## Instalação
 
-</details>
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/MattMori/DNC-E-Commerce-Back.git
+   cd DNC-E-Commerce-Back
+   ```
 
-<details>
-<summary> Testes no insomnia: Cliente</summary>
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-#### Insomnia Cliente - Cadastro
-![Insomnia Cliente - Cadastro](/public/InsomniaCliente/cadastro.jpg)
-#### Insomnia Cliente - Edição
-![Insomnia Cliente - Edição](/public/InsomniaCliente/Editar.jpg)
-#### Insomnia Cliente - Buscar todos
-![Insomnia Cliente - Buscar todos](/public/InsomniaCliente/buscarTodos.jpg)
-#### Insomnia Cliente - Buscar por ID
-![Insomnia Cliente - Buscar por ID](/public/InsomniaCliente/buscarID.jpg)
-#### Insomnia Cliente - Deletar
-![Insomnia Cliente - Deletar](/public/InsomniaCliente/deletar.jpg)
+3. Crie um arquivo `.env` com base no `.env.example`:
+   ```ini
+   MONGO_URI= # URI de conexão com o MongoDB
+   PORT=4000  # Porta onde o servidor será iniciado (opcional)
+   ```
 
-</details>
+## Executando a Aplicação
+Para iniciar o servidor, use o comando:
+```bash
+npm start
+```
 
-<details>
-<summary>Testes no insomnia: Produto</summary>
+O servidor será iniciado na porta definida no arquivo `.env`, ou na porta `4000` por padrão.
 
-#### Insomnia Produto - Cadastrar Produto
-![Insomnia Produto - cadastrar Produto](/public/InsomniaProdutos/cadastroProduto.jpg)
-#### Insomnia Produto - Buscar Produtos
-![Insomnia Produto - Buscar Produtos](/public/InsomniaProdutos/produtosCadastrados.jpg)
-#### Insomnia Produto - Buscar Produto especifico
-![Insomnia Produto - Buscar Produto especifico](/public/InsomniaProdutos/produtoEspecifico.jpg)
+## Endpoints Principais
 
-</details>
+### Clientes
+- `POST /clientes`: Cadastro de um novo cliente.
+- `GET /clientes`: Lista todos os clientes.
+- `GET /clientes/:id`: Buscar cliente pelo ID.
+- `PUT /clientes/:id`: Editar dados do cliente.
+- `DELETE /clientes/:id`: Deletar cliente.
 
-<details>
-<summary>Testes no insomnia: Pedido</summary>
+### Produtos
+- `POST /produtos`: Cadastrar um novo produto.
+- `GET /produtos`: Listar todos os produtos.
+- `GET /produtos/:id`: Buscar produto específico pelo ID.
 
-#### Insomnia Pedido - Incluir Item no Pedido
-![Insomnia Pedido - incluir Item no Pedido](/public/InsomniaPedido/incluirItemPedido.jpg)
-#### Insomnia Pedido - Listar Pedido do Cliente
-![Insomnia Pedido - listar Pedido do Cliente](/public/InsomniaPedido/listarPedidoCliente.jpg)
-#### Insomnia Pedido - Deletar Pedido do Cliente
-![Insomnia Pedido - Deletar Pedido do Cliente](/public/InsomniaPedido/pedidoDeletado.jpg)
+### Pedidos
+- `POST /pedidos`: Incluir um item em um pedido.
+- `GET /pedidos/:clienteId`: Listar pedidos de um cliente.
+- `DELETE /pedidos/:id`: Deletar pedido de um cliente.
 
-</details>
+### Vendas
+- `POST /vendas`: Gerar uma venda.
+- `GET /vendas`: Buscar todas as vendas.
+- `GET /vendas/:id`: Buscar venda específica pelo ID.
+- `DELETE /vendas/:id`: Deletar venda específica.
 
-<details>
-<summary>Testes no insomnia: Venda</summary>
+### Estoque
+- `GET /estoque`: Verificar o estoque disponível para produtos.
 
-#### Insomnia Venda - Gerar Venda
-![Insomnia Venda - Gerar Venda](/public/InsomniaVenda/gerarVenda.jpg)
-#### Insomnia Venda - Buscar Venda especifica
-![Insomnia Venda - Buscar Venda especifica](/public/InsomniaVenda/vendaEspecifica.jpg)
-#### Insomnia Venda - Buscar todas as vendas
-![Insomnia Venda - Buscar todas as vendas](/public/InsomniaVenda/vendasFeitas.jpg)
-#### Insomnia Venda - Deletar Venda especifica
-![Insomnia Venda - Deletar Venda especifica](/public/InsomniaVenda/deletarVenda.jpg)
+## Documentação
 
-</details>
+A documentação completa da API pode ser acessada através do Swagger UI, disponível no seguinte link:
+[Swagger UI](https://dnc-ecommerce-back.vercel.app/doc/)
+Senha para acesso aos testes: `123`
 
-<details>
-<summary>Testes no insomnia: Estoque</summary>
-
-#### Insomnia Estoque - Atualizar Produto
-![Insomnia Estoque - Atualizar Produto](/public/InsomniaEstoque/atualizarProduto.jpg)
-#### Insomnia Estoque - Mostrar Estoque
-![Insomnia Estoque - Mostrar Estoque](/public/InsomniaEstoque/estoque.jpg)
-#### Insomnia Estoque - Buscar produto especifico
-![Insomnia Estoque - Buscar produto especifico](/public/InsomniaEstoque/itemEspecifico.jpg)
-#### Insomnia Estoque - Remover produto do sistema
-![Insomnia Estoque - Remover produto do sistema](/public/InsomniaEstoque/produtoRemovido.jpg)
-
-</details>
+## Contribuição
+Contribuições são bem-vindas! Caso encontre algum problema ou tenha sugestões de melhorias, abra uma issue ou envie um pull request.
